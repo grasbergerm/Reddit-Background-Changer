@@ -8,10 +8,13 @@ f = open('top_image.jpg','wb')
 user_agent = ("image grab")
 r = praw.Reddit(user_agent=user_agent)
 user_name = "GrasbergerM"
-for submission in r.get_subreddit('carporn').get_top(limit=5):
+rand = random.randint(0,10)
+count = 0
+for submission in r.get_subreddit('carporn').get_top(limit=10):
     link = submission.url
-    if random.randint(0,5) == 3:
+    if rand == count:
         break
+    count += 1
 if link[len(link)-4:len(link):1] != ".jpg":
     link += ".jpg"
 f.write(urllib.urlopen(link).read())
